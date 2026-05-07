@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ─── Earth & Sky Design Tokens ────────────────────────────── */
+:root {
+  --gold:         #C5A059;
+  --gold-light:   #D4B375;
+  --gold-dark:    #A8853E;
+  --forest:       #1A2421;
+  --forest-mid:   #20302B;
+  --forest-light: #2B3F38;
+  --forest-card:  #1E2D28;
+  --cream:        #F6F1EB;
+  --cream-dim:    #E8E1D4;
+  --cream-muted:  rgba(246, 241, 235, 0.55);
+}
+
+/* ─── Base ─────────────────────────────────────────────────── */
+* { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--forest);
+  color: var(--cream);
+}
+
+.font-playfair { font-family: 'Playfair Display', serif; }
+
+/* ─── Gradient text (gold shimmer) ─────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glassmorphism (forest-tinted) ────────────────────────── */
+.glass {
+  background: rgba(26, 36, 33, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(197, 160, 89, 0.12);
+}
+
+/* ─── Destination card hover ────────────────────────────────── */
+.dest-card {
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+}
+.dest-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
+}
+.dest-card:hover .card-img {
+  transform: scale(1.08);
+}
+
+/* ─── Scroll animations ─────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ─── Shimmer effect on hero headline ───────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--gold-dark) 20%, var(--cream) 50%, var(--gold-dark) 80%);
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Form input focus glow ─────────────────────────────────── */
+.form-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.18);
+}
+
+/* ─── Nav link underline animation ──────────────────────────── */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* ─── CTA button subtle pulse ────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.35); }
+  50%       { box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); }
+}
+.btn-pulse { animation: pulse-glow 2.8s ease infinite; }
+
+/* ─── Divider rule ───────────────────────────────────────────── */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
